@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimis Handcrafted | Tote Bags que evolucionan contigo</title>
+    <style>
+        /* ==========================================================================
+           VARIABLES DE COLOR Y FUENTES (FLAT DESIGN)
+           ========================================================================== */
+        :root {
+            --color-pink: #FFD1DC;     /* Rosado Pastel (Principal) */
+            --color-pink-hover: #FFB6C1; /* Rosado Pastel más oscuro para hover */
+            --color-coffee: #5C4033;   /* Café (Secundario) */
+            --color-coffee-light: #7E5A47; /* Café claro */
+            --color-cream: #FFFDD0;    /* Crema (Terciario) */
+            --color-cream-alt: #FDF9E3; /* Crema alternativo para contrastes suaves */
+            --font-main: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* ==========================================================================
+           RESETEO BÁSICO
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-cream);
+            color: var(--color-coffee);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ==========================================================================
+           NAVEGACIÓN Y MENÚ HAMBURGUESA
+           ========================================================================== */
+        .navbar {
+            background-color: var(--color-pink);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            /* Flat design: borde inferior sólido en lugar de sombra */
+            border-bottom: 3px solid var(--color-coffee); 
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--color-coffee);
+            letter-spacing: -1px;
+        }
+
+        .logo span {
+            font-weight: 400;
+            font-size: 1.2rem;
+        }
+
+        /* Enlaces del menú (Desktop) */
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links li a {
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            padding: 0.5rem 1rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .nav-links li a:hover {
+            background-color: var(--color-coffee);
+            color: var(--color-pink);
+        }
+
+        /* Botón Hamburguesa (Oculto en Desktop) */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger .line {
+            width: 30px;
+            height: 4px;
+            background-color: var(--color-coffee);
+            margin: 6px 0;
+            border-radius: 2px;
+            transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        }
+
+        /* ==========================================================================
+           SECCIONES GENERALES
+           ========================================================================== */
+        section {
+            padding: 6rem 5% 4rem;
+        }
+
+        h1, h2, h3 {
+            color: var(--color-coffee);
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--color-coffee);
+            color: var(--color-pink);
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 2px solid var(--color-coffee);
+            border-radius: 0; /* Flat design = esquinas rectas o ligeramente redondeadas, optamos por planas */
+            transition: all 0.3s ease;
+            cursor: pointer;
+            margin-top: 1.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--color-pink);
+            color: var(--color-coffee);
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            background-color: var(--color-cream-alt);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 8rem;
+            border-bottom: 3px solid var(--color-coffee);
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-bottom: 2rem;
+        }
+
+        /* ==========================================================================
+           NOSOTROS (WHO WE ARE)
+           ========================================================================== */
+        .nosotros {
+            background-color: var(--color-pink);
+            border-bottom: 3px solid var(--color-coffee);
+        }
+
+        .nosotros-content {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nosotros-text {
+            flex: 1;
+            font-size: 1.2rem;
+        }
+
+        .nosotros-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .nosotros-image-placeholder {
+            flex: 1;
+            background-color: var(--color-cream);
+            border: 3px solid var(--color-coffee);
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: var(--color-coffee-light);
+        }
+
+        /* ==========================================================================
+           PERSONALIZACIÓN Y COLECCIÓN
+           ========================================================================== */
+        .personaliza {
+            background-color: var(--color-cream);
+            border-bottom: 3px solid var(--color-coffee);
+        }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background-color: var(--color-cream-alt);
+            border: 3px solid var(--color-coffee);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px); /* Ligero movimiento flat */
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            background-color: var(--color-pink);
+            padding: 0.5rem;
+            border: 3px solid var(--color-coffee);
+            margin-top: -3rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+        }
+
+        .card p {
+            font-size: 1.1rem;
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--color-coffee);
+            color: var(--color-cream);
+            text-align: center;
+            padding: 3rem 5%;
+        }
+
+        footer h3 {
+            color: var(--color-pink);
+        }
+
+        footer p {
+            margin-bottom: 1rem;
+        }
+
+        /* ==========================================================================
+           RESPONSIVIDAD (MEDIA QUERIES) Y ANIMACIONES DEL MENÚ
+           ========================================================================== */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+
+            .nosotros-content {
+                flex-direction: column;
+            }
+
+            .hamburger {
+                display: block; /* Mostrar botón hamburguesa en móvil */
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%; /* Oculto fuera de la pantalla por defecto */
+                height: 100vh;
+                width: 80%;
+                max-width: 400px;
+                background-color: var(--color-coffee);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 3rem;
+                transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1); /* Movimiento fluido y suave */
+                border-left: 3px solid var(--color-pink);
+            }
+
+            .nav-links.active {
+                right: 0; /* Deslizar hacia adentro */
+            }
+
+            .nav-links li a {
+                color: var(--color-cream);
+                font-size: 1.5rem;
+            }
+
+            .nav-links li a:hover {
+                background-color: var(--color-pink);
+                color: var(--color-coffee);
+                padding: 1rem 2rem;
+            }
+
+            /* Animación del botón hamburguesa a "X" */
+            .hamburger.active .line:nth-child(1) {
+                transform: translateY(10px) rotate(45deg);
+                background-color: var(--color-pink);
+            }
+
+            .hamburger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .line:nth-child(3) {
+                transform: translateY(-10px) rotate(-45deg);
+                background-color: var(--color-pink);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar">
+        <a href="#inicio" class="logo">Mimis <span>Handcrafted</span></a>
+        
+        <!-- Menú de Enlaces -->
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Quiénes Somos</a></li>
+            <li><a href="#personaliza">Personaliza</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+
+        <!-- Botón Hamburguesa -->
+        <button class="hamburger" aria-label="Abrir menú">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </button>
+    </nav>
+
+    <!-- SECCIÓN HERO -->
+    <section id="inicio" class="hero">
+        <h1>Hazla tuya,<br>hazla Mimis.</h1>
+        <p>Tote Bags que evolucionan contigo. Artesanales, personalizables y de edición limitada.</p>
+        <a href="#personaliza" class="btn">Descubre tu estilo</a>
+    </section>
+
+    <!-- SECCIÓN NOSOTROS -->
+    <section id="nosotros" class="nosotros">
+        <h2>Who We Are?</h2>
+        <div class="nosotros-content">
+            <div class="nosotros-text">
+                <p><strong>Mimis Handcrafted</strong> es una marca de productos artesanales que crea Tote Bags personalizables y colecciones de edición limitada.</p>
+                <p>No necesitas otra Tote Bag; necesitas una que se sienta tuya.</p>
+                <p>Convertimos lo cotidiano en expresión personal, con diseños de temporada y elementos que puedes combinar y personalizar a tu estilo para que conectes emocionalmente con lo que llevas.</p>
+            </div>
+            <div class="nosotros-image-placeholder">
+                [Imagen de Tote Bag Mimis]
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN PERSONALIZA -->
+    <section id="personaliza" class="personaliza">
+        <h2>Mimis Signature Collection</h2>
+        <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            Transforma tu Tote Bag sin tener que adquirir una nueva. Completamos tu estilo con detalles únicos.
+        </p>
+
+        <div class="grid-cards">
+            <!-- Tarjeta 1 -->
+            <div class="card">
+                <h3>Identidad</h3>
+                <p>Hazla única grabando tus <strong>iniciales, nombres o frases</strong>. Una Tote Bag que cuenta tu propia historia.</p>
+            </div>
+            
+            <!-- Tarjeta 2 -->
+            <div class="card">
+                <h3>Correas</h3>
+                <p><strong>Cambia la correa y cambia todo.</strong> Elige la que combine contigo en cada ocasión.</p>
+            </div>
+            
+            <!-- Tarjeta 3 -->
+            <div class="card">
+                <h3>Complementos</h3>
+                <p>Agrega <strong>bolsitos, monederos o bolsillos extra</strong> removibles que suman practicidad y encanto a tu día a día.</p>
+            </div>
+
+            <!-- Tarjeta 4 -->
+            <div class="card">
+                <h3>Charms</h3>
+                <p>Añade <strong>charms y accesorios de temporada</strong>. Infinitas formas de hacerla tuya.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACTO -->
+    <section id="contacto" style="padding: 0;">
+        <footer>
+            <h3>Mimis Handcrafted</h3>
+            <p>Hecha para ti, hecha con magia. ♡</p>
+            <p>Colaboramos con creadoras auténticas que comparten nuestro estilo de vida.</p>
+            <div style="margin-top: 2rem; font-size: 0.9rem;">
+                &copy; 2024 Mimis Handcrafted. Todos los derechos reservados.
+            </div>
+        </footer>
+    </section>
+
+    <!-- JAVASCRIPT PARA INTERACTIVIDAD -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            const links = document.querySelectorAll('.nav-links li a');
+
+            // Función para alternar el menú
+            const toggleMenu = () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            };
+
+            // Evento click en el botón hamburguesa
+            hamburger.addEventListener('click', toggleMenu);
+
+            // Cerrar el menú automáticamente al hacer clic en un enlace (para móviles)
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        toggleMenu();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
